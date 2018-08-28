@@ -1,14 +1,16 @@
 const router = require('express').Router();
 const passport = require('passport');
+const session = require('express-session');
 
 // auth login
-router.get('/login',(req,res)=>{
+router.get('/login',function(req,res){
     res.render('login',{user:req.user});
 });
 // auth logout
-router.get('/logout',(req,res)=>{
+router.get('/logout',function(req,res){
     //  handle with passport
     req.logout();
+    // req.session.destroy();
     res.redirect('/');
 }); 
 
@@ -18,7 +20,7 @@ router.get('/google',passport.authenticate('google',{
 }));
  
 // call back route for google to redirect to
-router.get('/google/redirect',passport.authenticate('google'),(req,res) => {
+router.get('/google/redirect',passport.authenticate('google'),function(req,res){
     
     // res.send(req.user);
     res.redirect('/profile/');
