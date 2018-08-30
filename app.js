@@ -36,6 +36,6 @@ app.get('/',function(req,res){
     res.render('home',{user:req.user});
 });
 
-app.listen(3000,function(){
-    console.log('app now listening for request on port 3000');
+app.listen(3004,function(){
+    console.log('app now listening for request on port 3004');
 });
